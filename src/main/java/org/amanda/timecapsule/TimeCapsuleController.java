@@ -19,6 +19,6 @@ public class TimeCapsuleController {
     @PostMapping
     public ResponseEntity<String> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest){
         timeCapsuleService.createCapsule(timeCapsuleRequest);
-        return ResponseEntity.ok("Time capsule has been successfully created!")
+        return ResponseEntity.ok("Time capsule has been successfully created!");
     }
 }

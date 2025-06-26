@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class TimeCapsuleRequest {
 
     @NotBlank(message= "Email is required")
-    @Email
+    @Email(message = "Incorrect email format")
     private String email;
 
     @NotBlank(message = "Message is required")
