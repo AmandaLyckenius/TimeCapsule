@@ -11,14 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class TimeCapsuleController {
     private final TimeCapsuleService timeCapsuleService;
+    private final MailService mailService;
 
-    public TimeCapsuleController(TimeCapsuleService timeCapsuleService) {
+    public TimeCapsuleController(TimeCapsuleService timeCapsuleService, MailService mailService) {
         this.timeCapsuleService = timeCapsuleService;
+        this.mailService = mailService;
     }
 
     @PostMapping
     public ResponseEntity<String> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest){
         timeCapsuleService.createCapsule(timeCapsuleRequest);
+
+        mailService.sendMail(
+                timeCapsuleRequest.getEmail(),
+                "Your vision capsule",
+                "Hi! You have created a time capsule for the future. It will be sent " + timeCapsuleRequest.getDeliveryDate()
+                );
+
         return ResponseEntity.ok("Time capsule has been successfully created!");
     }
 }
