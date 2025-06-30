@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Vision Capsule</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px; }
+        .container { background-color: #fff; padding: 20px; border-radius: 10px; }
+        .footer { margin-top: 30px; font-size: 0.9em; color: #888; }
+    </style>
+</head>
+<body>
+
+<div>
+
+    <h1>Your Vision Capsule has arrived!</h1>
+
+    <p><strong>Created on:</strong> <span th:text="${createdDate}">2025-06-29</span></p>
+    <p><strong>Your Message:</strong></p>
+    <blockquote th:text="${message}">This is your vision for the future.</blockquote>
+
+    <p>We hope this message brings back memories and inspiration for where you were when you wrote it.</p>
+
+    <div class="footer">
+        <p>Sent by <em>VisionCapsule</em></p>
+    </div>
+
+</div>
+
+</body>
+</html>
