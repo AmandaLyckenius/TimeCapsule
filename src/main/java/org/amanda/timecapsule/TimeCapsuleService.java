@@ -13,7 +13,7 @@ public class TimeCapsuleService {
         this.timeCapsuleRepository = timeCapsuleRepository;
     }
 
-    public void createCapsule(@Valid TimeCapsuleRequest timeCapsuleRequest) {
+    public TimeCapsule createCapsule(@Valid TimeCapsuleRequest timeCapsuleRequest) {
 
         TimeCapsule capsule = new TimeCapsule();
         capsule.setEmail(timeCapsuleRequest.getEmail());
@@ -22,5 +22,7 @@ public class TimeCapsuleService {
         capsule.setCreatedAt(LocalDateTime.now());
 
         timeCapsuleRepository.save(capsule);
+
+        return capsule;
     }
 }
