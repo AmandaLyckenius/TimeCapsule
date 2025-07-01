@@ -29,7 +29,6 @@ public class TimeCapsuleController {
                 "Hi! You have created a time capsule for the future. It will be sent " + timeCapsuleRequest.getDeliveryDate()
                 );
 
-        mailService.sendCapsuleMail(timeCapsule);
 
         return ResponseEntity.ok("Time capsule has been successfully created!");
     }
