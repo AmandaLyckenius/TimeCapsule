@@ -25,7 +25,7 @@ public class TimeCapsuleScheduler {
 
         for(TimeCapsule capsule: timeCapsulesDue){
             mailService.sendCapsuleMail(capsule);
-            capsule.setSent(false);
+            capsule.setSent(true);
             repository.save(capsule);
         }
 
