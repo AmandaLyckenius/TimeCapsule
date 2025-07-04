@@ -17,6 +17,7 @@ public class TimeCapsule {
     private String email;
     private String message;
     private LocalDate deliveryDate;
+    private boolean sent = false;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -58,5 +59,13 @@ public class TimeCapsule {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean isSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
 }

@@ -21,10 +21,12 @@ public class TimeCapsuleScheduler {
     @Scheduled(cron = "*/10 * * * * *")
     public void deliverTodaysCapsules() throws MessagingException {
         LocalDate today = LocalDate.now();
-        List<TimeCapsule> timeCapsulesDue = repository.findByDeliveryDate(today);
+        List<TimeCapsule> timeCapsulesDue = repository.findByDeliveryDateAndSentFalse(today);
 
         for(TimeCapsule capsule: timeCapsulesDue){
             mailService.sendCapsuleMail(capsule);
+            capsule.setSent(false);
+            repository.save(capsule);
         }
 
     }
