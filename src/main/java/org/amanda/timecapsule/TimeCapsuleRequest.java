@@ -1,9 +1,6 @@
 package org.amanda.timecapsule;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -16,30 +13,30 @@ public class TimeCapsuleRequest {
     @NotBlank(message = "Message is required")
     private String message;
     @NotNull(message = "A delivery date is required")
-    @Future(message = "The delivery date must be in the future")
+    @FutureOrPresent(message = "The delivery date must be today or in the future")
     private LocalDate deliveryDate;
 
-    public @NotBlank(message = "Email is required") @Email String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "Email is required") @Email String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @NotBlank(message = "Message is required") String getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(@NotBlank(message = "Message is required") String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    public @NotNull(message = "A delivery date is required") @Future(message = "The delivery date must be in the future") LocalDate getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(@NotNull(message = "A delivery date is required") @Future(message = "The delivery date must be in the future") LocalDate deliveryDate) {
+    public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 }

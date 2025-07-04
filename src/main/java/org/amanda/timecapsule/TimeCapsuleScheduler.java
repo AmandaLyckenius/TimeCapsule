@@ -2,7 +2,6 @@ package org.amanda.timecapsule;
 
 
 import jakarta.mail.MessagingException;
-import jakarta.validation.Valid;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +18,7 @@ public class TimeCapsuleScheduler {
         this.mailService = mailService;
     }
 
-    @Scheduled(cron = "0 0 8 * * *")
+    @Scheduled(cron = "*/10 * * * * *")
     public void deliverTodaysCapsules() throws MessagingException {
         LocalDate today = LocalDate.now();
         List<TimeCapsule> timeCapsulesDue = repository.findByDeliveryDate(today);

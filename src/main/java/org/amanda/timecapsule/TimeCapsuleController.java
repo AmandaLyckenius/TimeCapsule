@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping("/")
+@RequestMapping("/api/time-capsule")
 public class TimeCapsuleController {
     private final TimeCapsuleService timeCapsuleService;
     private final MailService mailService;
