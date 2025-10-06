@@ -5,6 +5,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @CrossOrigin(origins = "*")
 @RestController()
 @RequestMapping("/api/time-capsule")
@@ -18,7 +20,7 @@ public class TimeCapsuleController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest) throws MessagingException {
+    public ResponseEntity<Map<String, String>> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest) throws MessagingException {
         TimeCapsule timeCapsule = timeCapsuleService.createCapsule(timeCapsuleRequest);
 
         mailService.sendConfirmationMail(
@@ -28,6 +30,6 @@ public class TimeCapsuleController {
                 );
 
 
-        return ResponseEntity.ok("Time capsule has been successfully created!");
+        return ResponseEntity.ok(Map.of("message", "Time capsule sent!"));
     }
 }
