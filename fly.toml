@@ -1,20 +1,31 @@
-# fly.toml app configuration file generated for time-capsule on 2025-07-04T05:02:39+02:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'time-capsule'
-primary_region = 'arn'
+# fly.toml
+# App-namn: byt till DITT app-namn om du inte använder staging-namnet nedan
+app = "time-capsule"
+primary_region = "arn"
 
 [http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+internal_port = 8080
+force_https = true
+auto_stop_machines = "stop"
+auto_start_machines = true
+min_machines_running = 0
+processes = ["app"]
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+memory = "1gb"
+cpu_kind = "shared"
+cpus = 1
+
+[build]
+builder = "paketobuildpacks/builder-jammy-base:latest"
+buildpacks = ["paketo-buildpacks/java"]
+
+[env]
+# Java-versionen som Paketo ska använda
+BP_JVM_VERSION = "22"
+# Bygg utan att köra tester (bra under migreringen)
+BP_MAVEN_BUILD_ARGUMENTS = "-DskipTests package"
+
+# "Säkerhetsbälte": stäng av JPA/JDBC-autokonfiguration
+SPRING_DATA_JPA_REPOSITORIES_ENABLED = "false"
+SPRING_AUTOCONFIGURE_EXCLUDE = "org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration"
