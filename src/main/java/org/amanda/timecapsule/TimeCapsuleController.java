@@ -21,7 +21,7 @@ public class TimeCapsuleController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest) throws MessagingException {
+    public ResponseEntity<Map<String, String>> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest){
         TimeCapsule timeCapsule = timeCapsuleService.createCapsule(timeCapsuleRequest);
 
         try {
