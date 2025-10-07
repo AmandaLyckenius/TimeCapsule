@@ -3,6 +3,7 @@ package org.amanda.timecapsule;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -20,16 +21,18 @@ public class TimeCapsuleController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest) throws MessagingException {
+    public ResponseEntity<Map<String, String>> createCapsule(@Valid @RequestBody TimeCapsuleRequest timeCapsuleRequest){
         TimeCapsule timeCapsule = timeCapsuleService.createCapsule(timeCapsuleRequest);
 
-        mailService.sendConfirmationMail(
-                timeCapsuleRequest.getEmail(),
-                "Your vision capsule",
-                "Hi! You have created a time capsule for the future. It will be sent " + timeCapsuleRequest.getDeliveryDate()
-                );
-
-
+        try {
+            mailService.sendConfirmationMail(
+                    timeCapsuleRequest.getEmail(),
+                    "Your vision capsule",
+                    "Hi! You have created a time capsule for the future. It will be sent " + timeCapsuleRequest.getDeliveryDate()
+            );
+        } catch (MailException ex) {
+            System.err.println("Email send failed: " + ex.getMessage());
+        }
         return ResponseEntity.ok(Map.of("message", "Time capsule sent!"));
     }
 }

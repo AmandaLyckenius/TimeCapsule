@@ -1,19 +1,17 @@
 package org.amanda.timecapsule;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
+@Document(collection = "time_capsules")
+@CompoundIndex(name = "deliveryDate_sent_idx", def = "{'deliveryDate': 1, 'sent': 1}")
 public class TimeCapsule {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String email;
     private String message;
     private LocalDate deliveryDate;
@@ -21,11 +19,11 @@ public class TimeCapsule {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
