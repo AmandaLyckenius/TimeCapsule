@@ -11,6 +11,7 @@ public class TimeCapsuleRequest {
     private String email;
 
     @NotBlank(message = "Message is required")
+    @Size(max = 5000, message = "Message may be at most 5000 characters")
     private String message;
     @NotNull(message = "A delivery date is required")
     @FutureOrPresent(message = "The delivery date must be today or in the future")
