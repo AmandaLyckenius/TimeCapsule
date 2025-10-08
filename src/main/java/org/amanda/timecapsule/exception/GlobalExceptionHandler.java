@@ -1,4 +1,4 @@
-package org.amanda.timecapsule;
+package org.amanda.timecapsule.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

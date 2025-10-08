@@ -1,7 +1,10 @@
-package org.amanda.timecapsule;
+package org.amanda.timecapsule.scheduler;
 
 
 import jakarta.mail.MessagingException;
+import org.amanda.timecapsule.model.TimeCapsule;
+import org.amanda.timecapsule.repository.TimeCapsuleRepository;
+import org.amanda.timecapsule.service.MailService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

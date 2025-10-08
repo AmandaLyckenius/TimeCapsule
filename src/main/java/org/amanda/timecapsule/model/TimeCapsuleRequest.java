@@ -1,4 +1,4 @@
-package org.amanda.timecapsule;
+package org.amanda.timecapsule.model;
 
 import jakarta.validation.constraints.*;
 

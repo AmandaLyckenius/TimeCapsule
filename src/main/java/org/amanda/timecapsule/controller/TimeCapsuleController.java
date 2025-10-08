@@ -1,7 +1,10 @@
-package org.amanda.timecapsule;
+package org.amanda.timecapsule.controller;
 
-import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
+import org.amanda.timecapsule.service.MailService;
+import org.amanda.timecapsule.model.TimeCapsule;
+import org.amanda.timecapsule.model.TimeCapsuleRequest;
+import org.amanda.timecapsule.service.TimeCapsuleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;

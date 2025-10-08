@@ -1,6 +1,9 @@
-package org.amanda.timecapsule;
+package org.amanda.timecapsule.service;
 
 import jakarta.validation.Valid;
+import org.amanda.timecapsule.model.TimeCapsule;
+import org.amanda.timecapsule.repository.TimeCapsuleRepository;
+import org.amanda.timecapsule.model.TimeCapsuleRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
