@@ -1,0 +1,17 @@
+name: Deliver capsules
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  call-cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit delivery endpoint with retries
+        run: |
+          curl --silent --show-error --fail \
+               --retry 5 --retry-delay 10 --max-time 30 \
+               -X POST https://time-capsule.fly.dev/internal/cron/deliver-due \
+               -H "X-Cron-Token: ${{ secrets.CRON_TOKEN }}"
